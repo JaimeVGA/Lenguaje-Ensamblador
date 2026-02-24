@@ -8,7 +8,7 @@ int main(){
     printf("Ingresa 2 numeros: \n");
     scanf ("%ld %ld",&a,&b);
     resultado=Multiplicar(a,b);
-    printf("%ld",resultado);
+    printf("%ld \n",resultado);
 
     return 0;
 }

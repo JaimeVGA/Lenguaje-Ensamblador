@@ -10,7 +10,7 @@ Multiplicar:
     
     cmp rdi,rsi ;comparar rdi y rsi para saber cual es el mayor
     jg .mayorA ; Si rdi es mayor saltamos a mayorA
-    jmp .mayorB; Si rsi es mayor saltamos a mayorB    
+    jmp .invertir; Si rsi es mayor saltamos a invertir para invertir los numeros y que el mayor siempre sea rdi
     
 .mayorA:
     add rax,rsi
@@ -18,10 +18,11 @@ Multiplicar:
     jnz .mayorA 
     jmp .fin
 
-.mayorB:
-    add  rax,rdi
-    dec rsi
-    jnz .mayorB
+.invertir:
+    mov rax,rsi ;Invertimos los numeros para que el mayor siempre sea rdi, isando rax como auxiliar
+    mov rsi,rdi
+    mov rdi,rax
+    jmp .mayorA
 
 .fin:
     ret
