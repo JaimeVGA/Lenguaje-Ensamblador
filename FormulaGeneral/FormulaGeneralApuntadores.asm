@@ -5,7 +5,7 @@ section .text
     global FormulaGeneral
  
 FormulaGeneral:
-    ;los datos se guardan en rdi,rsi,rdx, Apuntadores(rci, r8)
+    ;los datos se guardan en rdi,rsi,rdx, Apuntadores(rcx, r8)
 
     cmp rdi, 0          ; a debe ser diferente de 0 para usar la fórmula general
     je .no_solucion     ; si a es 0, no usar fórmula general
