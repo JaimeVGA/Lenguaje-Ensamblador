@@ -18,5 +18,12 @@ int main() {
         printf("x2 = %.3f\n", x2);
     }
 
+    double comprobacion = a * x1 * x1 + b * x1 + c;
+    if (comprobacion == 0){
+        printf("correcto");
+    }else{
+        printf("incorrecto");
+    }
+
     return 0;
 }

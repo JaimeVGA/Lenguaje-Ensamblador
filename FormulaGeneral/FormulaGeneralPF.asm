@@ -1,5 +1,5 @@
 section .data
-    mensaje db "Error matematico" 0x0a
+    mensaje db "Error matematico", 0x0a
     longitud equ $ - mensaje
 
 section .text
