@@ -20,9 +20,9 @@ int main() {
 
     double comprobacion = a * x1 * x1 + b * x1 + c;
     if (comprobacion == 0){
-        printf("correcto");
+        printf("correcto \n");
     }else{
-        printf("incorrecto");
+        printf("incorrecto \n");
     }
 
     return 0;
