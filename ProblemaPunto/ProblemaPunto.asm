@@ -1,43 +1,40 @@
 section .text
     global NumeroPerfecto
-
+    ;numero en rdi
 NumeroPerfecto:
-    ; Entrada: rdi = n
-    ; Salida : rax = 1 si n es perfecto, 0 en caso contrario
+    mov r8, rdi ; guardamos el número original para compararlo al final 
+    xor r9, r9 ; suma de divisores para comparar en un futuro
 
-    push rbx                ; rbx es callee-saved, se debe restaurar
+    mov rax, rdi; dividimos el número entre 2 para obtener el divisor inicial
+    xor rdx, rdx; limpiamos el registro rdx para evitar problemas con la división
+    mov rcx, 2
+    idiv rcx
+    mov rdi, rax ; guardamos el divisor inicial en rdi para usarlo en el ciclo
 
-    mov rbx, rdi            ; guardamos n en rbx
-    xor rsi, rsi            ; rsi = suma de divisores propios
-    mov rcx, rbx            ; rcx = n
-    shr rcx, 1              ; iniciamos divisor en n/2
+    add r9, rdi ; sumamos el divisor a la suma total
+    dec rdi ;decrementamos el divisor
 
-.perfecto_bucle:
-    cmp rcx, 0              ; ¿ya revisamos todos los divisores?
-    je .final               ; si rcx == 0, terminamos
+.ciclo:
+    cmp rdi,0
+    je .comparacion
+    mov rax, r8 ; volvemos a cargar el número original para dividirlo entre el siguiente divisor
+    xor rdx, rdx ;limpiamos el registro rdx para evitar problemas con la división
+    idiv rdi ; dividimos el número original entre el divisor actual
+    cmp rdx,0
+    je .divisor ; si el residuo es 0, entonces es un divisor y lo sumamos a la suma total
+    dec rdi ; si no es divisor, decrementamos el divisor y seguimos buscando
+    jmp .ciclo
 
-    mov rax, rbx            ; rax = n (dividendo)
-    xor rdx, rdx            ; limpiar parte alta para división sin signo
-    div rcx                 ; (rdx:rax) / rcx -> cociente en rax, residuo en rdx
-    cmp rdx, 0              ; si residuo == 0, rcx es divisor de n
-    jne .siguiente
+.divisor:
+    add r9, rdi ; sumamos el divisor
+    dec rdi ; decrementamos el divisor para regresar al ciclo
+    jmp .ciclo
 
-    add rsi, rcx            ; acumular divisor propio
-
-.siguiente:
-    dec rcx                 ; siguiente divisor
-    jmp .perfecto_bucle
-
-.final:
-    cmp rsi, rbx            ; comparar suma de divisores con n
-    je .es_perfecto
-
-.no_perfecto:
-    xor rax, rax            ; devolver 0
-    pop rbx
+.comparacion:
+    cmp r9, r8 ; comparamos la suma con el numero original
+    je .perfecto ; si son iguales, es un numero perfecto
+    mov rax, 0 ; si no son iguales, no es un numero perfecto y devolvemos 0
     ret
-
-.es_perfecto:
-    mov rax, 1              ; devolver 1
-    pop rbx
+.perfecto:
+    mov rax, 1 ; si es un numero perfecto, devolvemos 1
     ret
