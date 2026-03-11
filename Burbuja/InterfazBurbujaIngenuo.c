@@ -1,43 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern void burbuja(int a[], int n);
+extern void BurbujaIngenuo(long a[], long n);
 
-void imprimirArreglo(const int a[], int n){
-   int i;
+void imprimirArreglo(const long a[], long n){
+   long i;
 
    for(i = 0; i < n; i++){
-      printf("%d%s", a[i], (i == n - 1) ? "\n" : " ");
+      printf("%ld%s", a[i], (i == n - 1) ? "\n" : " ");
    }
 }
 
 int main(void){
-   int n, i;
-   int *arreglo;
+   long n, i;
+   long *arreglo;
 
    printf("Cantidad de elementos: ");
-   if(scanf("%d", &n) != 1 || n <= 0){
+   if(scanf("%ld", &n) != 1 || n <= 0){
       printf("Entrada invalida.\n");
       return 1;
    }
 
-   arreglo = (int *)malloc((size_t)n * sizeof(int));
+   arreglo = (long *)malloc((size_t)n * sizeof(long));
 
    if(arreglo == NULL){
-      printf("No se pudo reservar memoria.\n");
+      printf("No se pudo reservars memoria.\n");
       return 1;
    }
 
-   printf("Ingresa %d enteros:\n", n);
+   printf("Ingresa %ld enteros:\n", n);
    for(i = 0; i < n; i++){
-      if(scanf("%d", &arreglo[i]) != 1){
+      if(scanf("%ld", &arreglo[i]) != 1){
          printf("Entrada invalida.\n");
          free(arreglo);
          return 1;
       }
    }
 
-   burbuja(arreglo, n);
+   BurbujaIngenuo(arreglo, n);
 
    printf("\nArreglo ordenado:\n");
    imprimirArreglo(arreglo, n);
