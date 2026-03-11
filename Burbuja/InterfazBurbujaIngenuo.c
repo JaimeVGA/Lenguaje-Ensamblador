@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 extern void BurbujaIngenuo(long a[], long n);
 
@@ -11,9 +12,16 @@ void imprimirArreglo(const long a[], long n){
    }
 }
 
+double calcularSegundos(const struct timespec inicio, const struct timespec fin){
+   return (double)(fin.tv_sec - inicio.tv_sec) +
+          (double)(fin.tv_nsec - inicio.tv_nsec) / 1000000000.0;
+}
+
 int main(void){
    long n, i;
    long *arreglo;
+   struct timespec inicio, fin;
+   double tiempo;
 
    printf("Cantidad de elementos: ");
    if(scanf("%ld", &n) != 1 || n <= 0){
@@ -24,7 +32,7 @@ int main(void){
    arreglo = (long *)malloc((size_t)n * sizeof(long));
 
    if(arreglo == NULL){
-      printf("No se pudo reservars memoria.\n");
+      printf("No se pudo reservar memoria.\n");
       return 1;
    }
 
@@ -37,10 +45,14 @@ int main(void){
       }
    }
 
+   clock_gettime(CLOCK_MONOTONIC, &inicio);
    BurbujaIngenuo(arreglo, n);
+   clock_gettime(CLOCK_MONOTONIC, &fin);
+   tiempo = calcularSegundos(inicio, fin);
 
    printf("\nArreglo ordenado:\n");
    imprimirArreglo(arreglo, n);
+   printf("Tiempo de ejecucion: %.9f segundos\n", tiempo);
 
    free(arreglo);
    return 0;
