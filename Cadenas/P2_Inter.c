@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <ctype.h>
-extern long palindromo(char *cadena);
+extern long palindromo(char *cadena, char *cadena2);
 
 int main(void){
     char cadena[100];
     int i = 0;
+    char cadena2[100];
 
     printf("Ingresa una cadena: ");
     fgets(cadena, sizeof(cadena), stdin);
@@ -31,7 +32,7 @@ int main(void){
         i++;
     }
 
-    if (palindromo(cadena))
+    if (palindromo(cadena2,cadena))
         printf("La cadena es un palindromo\n");
     else
         printf("La cadena no es un palindromo\n");
