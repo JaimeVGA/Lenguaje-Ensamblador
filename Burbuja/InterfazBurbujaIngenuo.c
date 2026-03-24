@@ -23,6 +23,8 @@ int main(void){
    struct timespec inicio, fin;
    double tiempo;
 
+   srand((unsigned int)time(NULL));
+
    printf("Cantidad de elementos: ");
    if(scanf("%ld", &n) != 1 || n <= 0){
       printf("Entrada invalida.\n");
@@ -36,14 +38,12 @@ int main(void){
       return 1;
    }
 
-   printf("Ingresa %ld enteros:\n", n);
    for(i = 0; i < n; i++){
-      if(scanf("%ld", &arreglo[i]) != 1){
-         printf("Entrada invalida.\n");
-         free(arreglo);
-         return 1;
-      }
+      arreglo[i] = (long)(rand() % 100001);
    }
+
+   printf("\nArreglo generado:\n");
+   imprimirArreglo(arreglo, n);
 
    clock_gettime(CLOCK_MONOTONIC, &inicio);
    BurbujaIngenuo(arreglo, n);

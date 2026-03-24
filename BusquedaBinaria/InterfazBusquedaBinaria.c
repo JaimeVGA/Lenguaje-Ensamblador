@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-extern void BurbujaSegundaMejora(long a[], long n);
+extern long BusquedaBinaria(long a[], long n, long valor);
 
 void imprimirArreglo(const long a[], long n){
     long i;
@@ -11,19 +11,16 @@ void imprimirArreglo(const long a[], long n){
     }
 }
 
-
 double calcularSegundos(const struct timespec inicio, const struct timespec fin){
     return (double)(fin.tv_sec - inicio.tv_sec) +
            (double)(fin.tv_nsec - inicio.tv_nsec) / 1000000000.0;
 }
 
 int main(void){
-    long n, i;
+    long n, i, valor, resultado;
     long *arreglo;
     struct timespec inicio, fin;
     double tiempo;
-
-    srand((unsigned int)time(NULL));
 
     printf("Cantidad de elementos: ");
     if(scanf("%ld", &n) != 1 || n <= 0){
@@ -37,20 +34,32 @@ int main(void){
         return 1;
     }
 
+    // Generar arreglo ordenado: arreglo[i] = i * 10
     for(i = 0; i < n; i++){
-        arreglo[i] = (long)(rand() % 100001);
+        arreglo[i] = i * 10;
     }
 
-    //printf("\nArreglo generado:\n");
-    //imprimirArreglo(arreglo, n);
+    printf("\nArreglo generado (ordenado):\n");
+    imprimirArreglo(arreglo, n);
+
+    printf("Ingresa el valor a buscar: ");
+    if(scanf("%ld", &valor) != 1){
+        printf("Entrada invalida.\n");
+        free(arreglo);
+        return 1;
+    }
 
     clock_gettime(CLOCK_MONOTONIC, &inicio);
-    BurbujaSegundaMejora(arreglo, n);
+    resultado = BusquedaBinaria(arreglo, n, valor);
     clock_gettime(CLOCK_MONOTONIC, &fin);
     tiempo = calcularSegundos(inicio, fin);
 
-    //printf("\nArreglo ordenado:\n");
-    //imprimirArreglo(arreglo, n);
+    if(resultado == -1){
+        printf("\nValor %ld no encontrado.\n", valor);
+    } else {
+        printf("\nValor %ld encontrado en posicion: %ld\n", valor, resultado);
+    }
+
     printf("Tiempo de ejecucion: %.9f segundos\n", tiempo);
 
     free(arreglo);
