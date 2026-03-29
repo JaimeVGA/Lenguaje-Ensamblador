@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-extern void BurbujaIngenuo(long a[], long n);
+extern void Burbuja(long a[], long n);
 
 void imprimirArreglo(const long a[], long n){
    long i;
@@ -46,7 +46,7 @@ int main(void){
    imprimirArreglo(arreglo, n);
 
    clock_gettime(CLOCK_MONOTONIC, &inicio);
-   BurbujaIngenuo(arreglo, n);
+   Burbuja(arreglo, n);
    clock_gettime(CLOCK_MONOTONIC, &fin);
    tiempo = calcularSegundos(inicio, fin);
 

@@ -1,12 +1,12 @@
 section .text
-	global BurbujaIngenuo
+	global Burbuja
 	
 ;en rdi se pasa la dirección del array a ordenar
 ;en rsi se pasa el número de elementos del array
 ;r8 sera nuestro contador 
 
 	 
- BurbujaIngenuo:
+ Burbuja:
 	mov r8,0 ;contador que sera como i
 	mov r10,rsi ;guardamos el número de elementos en r10
 	dec r10 ;restamos 1 al número de elementos para evitar salirnos del array en el segundo ciclo
