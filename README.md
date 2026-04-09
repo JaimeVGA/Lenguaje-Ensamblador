@@ -25,6 +25,10 @@ Repositorio con una colección de ejercicios y proyectos desarrollados en **leng
   - `BurbujaMejorado.asm` - Versión optimizada
   - `BurbujaSegundaMejora.asm` - Segunda mejora
   - Interfaces en C para prueba
+- **Insercion/** - Ordenamiento por inserción
+  - `Insercion.asm` - Versión en ensamblador
+  - `Insercion.c` - Versión en C para pruebas de rendimiento
+  - Genera `n` números aleatorios y mide el tiempo de ordenamiento
 
 ### Búsqueda
 - **BusquedaBinaria/** - Implementación de búsqueda binaria
@@ -92,6 +96,15 @@ gcc interfaz.c archivo.o -o programa
 
 Presiona `Ctrl+Shift+B` para compilar el archivo actual.
 
+### Ejemplo: inserción en C con números aleatorios y tiempo
+
+```bash
+gcc Insercion/Insercion.c -O2 -std=c11 -o Insercion/InsercionC
+./Insercion/InsercionC
+```
+
+El programa solicita cuántos números generar (`n`), crea un arreglo con valores aleatorios, lo ordena por inserción y muestra el tiempo que tardó en ordenarlo.
+
 ---
 
 ## 📝 Contenido Principal
@@ -99,6 +112,7 @@ Presiona `Ctrl+Shift+B` para compilar el archivo actual.
 | Carpeta | Descripción |
 |---------|-------------|
 | **Burbuja/** | Algoritmo de ordenamiento burbuja en 3 versiones |
+| **Insercion/** | Ordenamiento por inserción y medición de tiempo |
 | **BusquedaBinaria/** | Búsqueda binaria eficiente |
 | **Cadenas/** | Operaciones con strings (strlen, strcpy, strcmp) |
 | **Arreglos/** | Manipulación y operaciones con arreglos |

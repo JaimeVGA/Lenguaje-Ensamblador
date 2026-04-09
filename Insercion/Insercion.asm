@@ -18,7 +18,7 @@ ordenamiento_Insercion:
     
     cmp r10,-1              ;Compara j con -1
     jle .insertar           ;Si j es menor o igual a -1, brincamos a insertar
-    cmp [rdi+r10*8],rcx     ;Compara el elemento en j con el elemento actual
+    cmp [rdi+r10*8],rcx      ;Compara el elemento en j con el elemento actual
     jle .insertar           ;Si el elemento en j es menor o igual al elemento actual
 
 ;HACEMOS EL SHIFT DE LOS ELEMENTOS A LA DERECHA
