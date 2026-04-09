@@ -23,7 +23,7 @@ ordenamiento_Insercion:
     dec rdx         ;lo decrementamos en 1
       
     .bucle2:
-    mov r8, [rdi + rdx*8]  ;en r8 guardamos lo que hay en la direccion de rdi dos posiciones adelante
+    mov r8, [rdi + rdx*8] 
     cmp rdx, 0
     jl .siguiente
     cmp r8, rbx
