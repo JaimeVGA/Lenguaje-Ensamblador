@@ -13,24 +13,24 @@ ordenamiento_Insercion:
     mov rcx,[rdi+rax*8]     ;RCX SERA EL ELEMENTO ACTUAL A COMPARAR, SE MULTIPLICA POR 8 PORQUE CADA ELEMENTO ES DE 8 BYTES
 .ciclo2:
 ; 2 CONDICIONES DE SEGUNDO CICLO:
-    mov r8,r10             ;R8 SERA EL J+1
+    mov r8,r10              ;R8 SERA EL J+1
     inc r8                 
     
     cmp r10,-1              ;Compara j con -1
     jle .insertar           ;Si j es menor o igual a -1, brincamos a insertar
-    cmp [rdi+r10*8],rcx      ;Compara el elemento en j con el elemento actual
+    cmp [rdi+r10*8],rcx     ;Compara el elemento en j con el elemento actual
     jle .insertar           ;Si el elemento en j es menor o igual al elemento actual
 
 ;HACEMOS EL SHIFT DE LOS ELEMENTOS A LA DERECHA
     
     mov r9,[rdi+r10*8]     ;R9 SERA EL ELEMENTO EN J DEL ARREGLO,
-    mov [rdi+r8*8],r9      ;Shift del elemento en j
-    dec r10                 ;Decrementamos j para seguir comparando con los elementos anteriores
+    mov [rdi+r8*8],r9      ;Shift del elemento en j 
+    dec r10                ;Decrementamos j para seguir comparando con los elementos anteriores
     jmp .ciclo2            ;Repetimos el ciclo para seguir comparando
 
 .insertar:
     mov [rdi+r8*8],rcx     ;Insertamos el elemento actual en su posición correcta
-    inc rax                 ;Incrementamos i para pasar al siguiente elemento
+    inc rax                ;Incrementamos i para pasar al siguiente elemento
     jmp .ciclo1            ;Repetimos el ciclo para el siguiente elemento
 .fin:
     ret

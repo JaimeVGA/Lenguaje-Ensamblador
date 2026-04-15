@@ -41,17 +41,17 @@ int main(void) {
     memcpy(a1, base, (size_t)n * sizeof(long));
     memcpy(a2, base, (size_t)n * sizeof(long));
 
-    //clock_gettime(CLOCK_MONOTONIC, &t0);
-    //BurbujaSegundaMejora(a1, n);
-    //clock_gettime(CLOCK_MONOTONIC, &t1);
-    //tb = segundos(t0, t1);
+    clock_gettime(CLOCK_MONOTONIC, &t0);
+    BurbujaSegundaMejora(a1, n);
+    clock_gettime(CLOCK_MONOTONIC, &t1);
+    tb = segundos(t0, t1);
 
     clock_gettime(CLOCK_MONOTONIC, &t0);
     ordenamiento_Insercion(a2, n);
     clock_gettime(CLOCK_MONOTONIC, &t1);
     ti = segundos(t0, t1);
 
-    //printf("BurbujaSegundaMejora: %.9f s | ordenado: %s\n", tb, esta_ordenado(a1, n) ? "SI" : "NO");
+    printf("BurbujaSegundaMejora: %.9f s | ordenado: %s\n", tb, esta_ordenado(a1, n) ? "SI" : "NO");
     printf("Insercion:            %.9f s | ordenado: %s\n", ti, esta_ordenado(a2, n) ? "SI" : "NO");
 
     free(base);
