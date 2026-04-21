@@ -12,18 +12,18 @@ aplicar_grises:
     ; rsi = numero de píxeles
 
     ;cargamos los coeficientes en registros de punto flotante
-    movss xmm1, [rel coefs]       ; Cargar coeficiente para R en
+    movss xmm1, [rel coefs]       ; Cargar coeficiente para R en xmm1
 
 .bucle:
     cmp rsi, 0                  ; Verificar si quedan píxeles por procesar
-    dec .fin
+    je .fin
     
     ;1.extraer los 4 bytes deñ píxel actual (RGBA)
     ;necesitamos convertilos a float para multplicar
 
-    mov eax, byte [rdi]              ; EAX = R
-    mov ebx, byte [rdi + 1]          ; EBX = G
-    mov ecx, byte [rdi + 2]          ; ECX = B
+    movzx eax, byte [rdi]              ; EAX = R
+    movzx ebx, byte [rdi + 1]          ; EBX = G
+    movzx ecx, byte [rdi + 2]          ; ECX = B
 
     ;2 convertir a float y poner en un registro xmm temporal
     cvtsi2ss xmm2, eax               ; xmm2[0]=R
