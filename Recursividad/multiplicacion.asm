@@ -11,6 +11,19 @@ multiplicacion_recursiva:
     cmp rsi, 1
     je .igual
 
+    cmp rdi,rsi
+    jg .suma
+
+    mov r8,rdi
+    mov rdi,rsi
+    mov rsi,r8
+
+    cmp rsi,1
+    jg .suma
+
+    jmp .resta
+    
+.suma:
     push rdi
     dec rsi
     call multiplicacion_recursiva
@@ -18,7 +31,7 @@ multiplicacion_recursiva:
 
     add rax, rdi
     jmp .fin
-
+    
 .cero:
     xor rax, rax
     jmp .fin
